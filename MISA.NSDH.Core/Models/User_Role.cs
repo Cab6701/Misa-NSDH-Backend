@@ -14,7 +14,7 @@ namespace MISA.NSDH.Core.Models
             RoleID = Guid.NewGuid();
             UserID = Guid.NewGuid();
         }
-        public User_Role(Guid userId, Guid roleId)
+        public User_Role(Guid roleId, Guid userId)
         {
             UserID = userId;
             RoleID = roleId;

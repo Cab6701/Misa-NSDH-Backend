@@ -35,7 +35,7 @@ namespace MISA.NSDH.Core.Services
                 List<Guid> roleIDs = entity.RoleID;
                 foreach (var item in roleIDs)
                 {
-                    User_Role userRole = new User_Role (user.UserID, item);
+                    User_Role userRole = new User_Role (item, user.UserID);
                     var response = _roleRepository.Insert(userRole);
                     list.Add(response);
                 }

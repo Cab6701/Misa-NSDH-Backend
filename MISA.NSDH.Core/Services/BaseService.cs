@@ -20,6 +20,13 @@ namespace MISA.NSDH.Core.Services
             _repository = repository;
             ErrorValidateMsgs = new List<string>();
         }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Thực hiện chức năng thêm mới
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        /// <exception cref="MISAValidateException"></exception>
         public virtual int InsertService(MISAEntity user)
         {
             //Validate dữ liệu:
@@ -36,26 +43,67 @@ namespace MISA.NSDH.Core.Services
             }
         }
 
-        public int UpdateService(MISAEntity user)
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Chức năng cập nhật vai trò
+        /// </summary>
+        /// <param name="urole"></param>
+        /// <returns></returns>
+        public int UpdateService(IEnumerable<MISAEntity> urole)
         {
-            throw new NotImplementedException();
+            var res = this.UpdateUserRole(urole);
+            return res;
+        }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Chức năng cập nhật vai trò
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        protected virtual int UpdateUserRole(IEnumerable<MISAEntity> entity)
+        {
+            return 0;
         }
 
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm trước khi thêm
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         protected virtual MISAEntity BeforeInsert(MISAEntity entity)
         {
             return entity;
         }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Chức năng thêm
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         protected virtual int DoInsert(MISAEntity entity)
         {
             var res = _repository.Insert(entity);
             return res;
 
         }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Chức năng sau khi thêm
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         protected virtual MISAEntity AfterInsert(MISAEntity entity)
         {
             return entity;
         }
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Chức năng thêm hàng loạt
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        /// <exception cref="MISAValidateException"></exception>
         public virtual int InsertAllService(IEnumerable<MISAEntity> entity)
         {
             MySqlTransaction transaction = null;
@@ -90,6 +138,7 @@ namespace MISA.NSDH.Core.Services
 
 
         /// <summary>
+        /// Author: THBAC (15/8/2022)
         /// Thực hiện validate dữ liệu khi thêm mới
         /// </summary>
         /// <param name="entity"></param>
@@ -99,6 +148,7 @@ namespace MISA.NSDH.Core.Services
             return true;
         }
         /// <summary>
+        /// Author: THBAC (15/8/2022)
         /// Thực hiện validate dữ liệu khi update
         /// </summary>
         /// <param name="entity"></param>
@@ -107,7 +157,27 @@ namespace MISA.NSDH.Core.Services
         {
             return true;
         }
-
-        
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Chức năng cập nhật
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        /// <exception cref="MISAValidateException"></exception>
+        public int UpdateService(MISAEntity user)
+        {
+            //Validate dữ liệu:
+            var isValid = Validate(user);
+            //Thực hiện thêm mới:
+            if (isValid == true)
+            {
+                var res = _repository.Update(user);
+                return res;
+            }
+            else
+            {
+                throw new MISAValidateException(ErrorValidateMsgs);
+            }
+        }
     }
 }

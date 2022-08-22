@@ -26,7 +26,7 @@ namespace MISA.NSDH.Infrastructure.Repository
         }
         /// <summary>
         /// Athor: THBAC (3/8/2022)
-        /// Hàm lấy dư liệu thông tin người dùng
+        /// Hàm lấy dữ liệu thông tin 
         /// </summary>
         /// <returns></returns>
         public virtual IEnumerable<MISAEntity> Get()
@@ -38,7 +38,12 @@ namespace MISA.NSDH.Infrastructure.Repository
                 return users;
             }
         }
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Lấy thông tin theo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public MISAEntity Get(Guid id)
         {
             using (MySqlConnection = new MySqlConnection(ConnectionString))
@@ -50,7 +55,12 @@ namespace MISA.NSDH.Infrastructure.Repository
                 return user;
             }
         }
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm thêm mới thông tin
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public int Insert(MISAEntity entity)
         {
             using (MySqlConnection = new MySqlConnection(ConnectionString))
@@ -60,7 +70,12 @@ namespace MISA.NSDH.Infrastructure.Repository
                 return res;
             }
         }
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm xoá thông tin
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         public int Delete(Guid entityId)
         {
             using (MySqlConnection = new MySqlConnection(ConnectionString))
@@ -72,15 +87,42 @@ namespace MISA.NSDH.Infrastructure.Repository
                 return res;
             }
         }
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
         }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm xoá vai trò người dùng
+        /// </summary>
+        /// <param name="id1"></param>
+        /// <param name="id2"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
 
         public virtual int Delete(Guid id1, Guid id2)
         {
             throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm cập nhật dữ liệu
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int Update(MISAEntity entity)
+        {
+            using (MySqlConnection = new MySqlConnection(ConnectionString))
+            {
+                var sql = $"Proc_Update{TableName}";
+                var res = MySqlConnection.Execute(sql: sql, param: entity, commandType: System.Data.CommandType.StoredProcedure);
+                return res;
+            }
         }
     }
 }

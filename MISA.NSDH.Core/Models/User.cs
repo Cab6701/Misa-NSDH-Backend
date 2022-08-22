@@ -67,7 +67,9 @@ namespace MISA.NSDH.Core.Models
         /// Trạng thái
         /// </summary>
         public int Status { get; set; }
-
+        /// <summary>
+        /// Mảng mã vai trò
+        /// </summary>
         public List<Guid> RoleID { get; set; }
 
         #endregion

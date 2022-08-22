@@ -21,7 +21,13 @@ namespace MISA.NSDH.Core.Services
             _repository = repository;
             _roleRepository = roleRepository;
         }
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Thêm mới hàng loạt
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        /// <exception cref="MISAValidateException"></exception>
         public override int InsertService(User entity)
         {
             //Validate dữ liệu:
@@ -55,7 +61,7 @@ namespace MISA.NSDH.Core.Services
                 throw new MISAValidateException(ErrorValidateMsgs);
             }
         }
-        protected override int DoInsert(User entity)
+        /*protected override int DoInsert(User entity)
         {
             User user = new User(entity.UserCode, entity.UserName, entity.DepartmentID, entity.PositionID, entity.Email, entity.Status);
             var res = _repository.Insert(user);
@@ -78,8 +84,14 @@ namespace MISA.NSDH.Core.Services
             }
             return res;
 
-        }
+        }*/
 
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm validate
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         protected override bool Validate(User user)
         {
 

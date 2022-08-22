@@ -18,6 +18,34 @@ namespace MISA.NSDH.Api.Controllers
             _repository = repository;
         }
 
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm update thông tin vai trò người dùng
+        /// </summary>
+        /// <param name="urole"></param>
+        /// <returns></returns>
+        [HttpPut("UpdateUserRole")]
+        public IActionResult UpdateUserRole(IEnumerable<User_Role> urole)
+        {
+            try
+            {
+                var res = _service.UpdateService(urole);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+
+                return HandleException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm xoá vai trò của người dùng
+        /// </summary>
+        /// <param name="id1">roleID</param>
+        /// <param name="id2">userID</param>
+        /// <returns></returns>
         [HttpDelete("{id1}/{id2}")]
         public IActionResult Delete(Guid id1, Guid id2)
         {

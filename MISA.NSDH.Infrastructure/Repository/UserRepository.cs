@@ -12,6 +12,12 @@ namespace MISA.NSDH.Infrastructure.Repository
 {
     public class UserRepository:BaseRepository<User>, IUserRepository
     {
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm kiểm tra mã tồn tại
+        /// </summary>
+        /// <param name="userCode"></param>
+        /// <returns></returns>
         public bool CheckUserCodeExits(string userCode)
         {
             using (MySqlConnection = new MySqlConnection(ConnectionString))
@@ -42,7 +48,14 @@ namespace MISA.NSDH.Infrastructure.Repository
                 return users;
             }
         }
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm phân trang và lọc
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="fillter"></param>
+        /// <returns></returns>
         public object GetPaging(int pageIndex, int pageSize, string? fillter)
         {
             using (MySqlConnection = new MySqlConnection(ConnectionString))
@@ -69,5 +82,21 @@ namespace MISA.NSDH.Infrastructure.Repository
                 };
             }
         }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm lấy mã mới
+        /// </summary>
+        /// <returns></returns>
+        public string GetNewUserCode()
+        {
+            using (MySqlConnection = new MySqlConnection(ConnectionString))
+            {
+                var sql = $"Proc_GetNewUserCode";
+                var newcode = MySqlConnection.QueryFirst<string>(sql: sql, commandType: System.Data.CommandType.StoredProcedure);
+                return newcode;
+
+            }
+        }
+
     }
 }

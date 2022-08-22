@@ -12,22 +12,22 @@ namespace MISA.NSDH.Core.Exceptions
     {
         #region Properties
         /// <summary>
-        /// Author: Trịnh Hoài Bắc (20/6/2022 - 11:43)
+        /// Author: Trịnh Hoài Bắc (20/8/2022 - 11:43)
         /// Tin nhắn lỗi check validate
         /// </summary>
         public string? ValidateErrorMsg { get; set; }
         /// <summary>
-        /// Author: Trịnh Hoài Bắc (20/6/2022 - 11:50)
+        /// Author: Trịnh Hoài Bắc (20/8/2022 - 11:50)
         /// Chuỗi các lỗi
         /// </summary>
         public IDictionary Errors { get; set; }
         /// <summary>
-        /// Author: Trịnh Hoài Bắc (20/6/2022 - 11:50)
+        /// Author: Trịnh Hoài Bắc (20/8/2022 - 11:50)
         /// Hàm ghi đè Message
         /// </summary>
         public override string Message => this.ValidateErrorMsg;
         /// <summary>
-        /// Author: Trịnh Hoài Bắc (20/6/2022 - 11:50)
+        /// Author: Trịnh Hoài Bắc (20/8/2022 - 11:50)
         /// Hàm chứa các thông tin lỗi
         /// </summary>
         public override IDictionary Data => Errors;
@@ -35,7 +35,7 @@ namespace MISA.NSDH.Core.Exceptions
 
         #region Constructor
         /// <summary>
-        /// Author: Trịnh Hoài Bắc (20/6/2022 - 11:50)
+        /// Author: Trịnh Hoài Bắc (20/8/2022 - 11:50)
         /// Hàm tạo
         /// </summary>
         /// <param name="errorMsg"></param>
@@ -45,7 +45,7 @@ namespace MISA.NSDH.Core.Exceptions
 
         }
         /// <summary>
-        /// Author: Trịnh Hoài Bắc (20/6/2022 - 11:50)
+        /// Author: Trịnh Hoài Bắc (20/8/2022 - 11:50)
         /// Hàm tạo
         /// </summary>
         /// <param name="errorMsg"></param>

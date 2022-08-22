@@ -40,6 +40,12 @@ namespace MISA.NSDH.Api.Controllers
                 throw;
             }
         }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Lấy thông tin người dùng theo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
@@ -57,6 +63,12 @@ namespace MISA.NSDH.Api.Controllers
         }
         #endregion
         #region HttpPost
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Thêm người dùng
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(MISAEntity user)
         {
@@ -71,7 +83,31 @@ namespace MISA.NSDH.Api.Controllers
             }
 
         }
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Sửa người dùng
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public IActionResult Update(MISAEntity user)
+        {
+            try
+            {
+                var res = _service.UpdateService(user);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return HandleException(ex);
+            }
+        }
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Xoá người dùng
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         [HttpDelete]
         public IActionResult Delete(Guid userID)
         {
@@ -87,7 +123,12 @@ namespace MISA.NSDH.Api.Controllers
         }
 
 
-
+        /// <summary>
+        /// Author: THBAC (15/8/2022)
+        /// Hàm xử lí lỗi
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
         protected IActionResult HandleException(Exception ex)
         {
             var res = new
